@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color-purple {
+    color: #81287d;
+}
+
+.bg-blog {
+    background-color: #81287d;
+    border-color: #81287d;
+}
+
+.font-pacifico {
+    font-family: Pacifico, cursive;
+}
+
+body {
+	--ck-z-default: 100;
+	--ck-z-modal: calc( var(--ck-z-default) + 999 );
+}
+.ck.ck-button {
+	-webkit-appearance: none;
+}

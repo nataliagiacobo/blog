@@ -1,0 +1,20 @@
+<nav class="navbar sticky-top bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="''">
+            <h3 class="fw-normal font-pacifico text-center">blog</h3>
+        </a>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/album">Álbuns</a>
+            </li>
+        </ul>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()">Sair</a>
+            </li>
+        </ul>
+    </div>
+</nav>

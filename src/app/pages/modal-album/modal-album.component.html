@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 class="modal-title">Criar Álbum de Fotos</h4>
+  <button id="btnFecharID" type="button" class="btn-close close pull-right" aria-label="Close"
+    (click)="this.bsModalRef.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="albumForm" class="row g-1">
+    <div class="form-group">
+      <label for="albumName">Nome do Álbum:</label>
+      <input type="text" class="form-control" id="albumName" formControlName="albumName">
+    </div>
+    <div class="form-group">
+      <label for="albumDescription">Descrição:</label>
+      <input type="text" class="form-control" id="albumDescription" formControlName="albumDescription">
+    </div>
+    <div class="form-group">
+      <label for="photoInput">Anexar Fotos:</label>
+      <input type="file" class="form-control-file" formControlName="photoInput" id="photoInput"
+        (change)="handleFileInput($event)" multiple>
+    </div>
+    <div class="selected-photos">
+      <ul *ngIf="selectedPhotos.length > 0">
+        <li *ngFor="let photo of selectedPhotos">{{ photo.name }}</li>
+      </ul>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+</div>

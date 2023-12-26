@@ -1,0 +1,19 @@
+<div class="pageContent">
+    <main class="form-signin w-100 m-auto">
+        <h1 class="h1 mb-3 fw-normal font-pacifico text-center">blog</h1>
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com"
+                    formControlName="username">
+                <label for="username">Usuário</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Senha"
+                    formControlName="password">
+                <label for="password">Senha</label>
+            </div>
+            <button class="btn btn-primary w-100 py-2 mb-2" type="submit">Entrar</button>
+            <button class="btn btn-secondary w-100 py-2" (click)="onRegister()">Cadastrar-se</button>
+        </form>
+    </main>
+</div>

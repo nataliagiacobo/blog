@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Criar Post</h4>
+  <button id="btnFecharID" type="button" class="btn-close close pull-right" aria-label="Close"
+    (click)="this.bsModalRef.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="row g-1">
+    <div class="col-md-12 mb-2">
+      <ckeditor [editor]="Editor" (ready)="onReady($event)" [(ngModel)]="content" name="content"></ckeditor>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-outline-secondary btn-block bt-voltar" (click)="onSubmit()">Postar</button>
+</div>
