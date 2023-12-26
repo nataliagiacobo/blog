@@ -27,7 +27,3 @@ body {
 .card-body {
   overflow: auto; 
 }
-
-figure {
-  max-width: 960px;
-}

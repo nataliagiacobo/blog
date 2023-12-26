@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { IUser } from '../../interfaces/IUser';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [FormsModule, ReactiveFormsModule, HttpClientModule, CommonModule],
   providers: [AuthService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   public user: IUser = {};
   public loginForm!: FormGroup;
+  public error?: string;
 
   constructor(
     private router: Router,
@@ -39,9 +41,7 @@ export class LoginComponent implements OnInit {
     this.user.password = this.loginForm.controls['password'].value;
 
     this.authService.login(this.user).subscribe((response) => {
-      // TODO tratar exceções
-      if (response.status == 400)
-        console.log("error");
+      this.error = response.message;
     });
   }
 

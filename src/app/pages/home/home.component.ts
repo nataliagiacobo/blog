@@ -6,7 +6,7 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { AuthService } from '../../services/auth.service';
 import { IPostResponse } from '../../interfaces/IPost';
 import { environment } from '../../../environments/environment';
-import { catchError, map, tap, throwError } from 'rxjs';
+import { catchError, map, take, tap, throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ICommentRequest, ICommentResponse } from '../../interfaces/IComment';
@@ -70,6 +70,13 @@ export class HomeComponent implements OnInit {
     };
 
     this.bsModalRef = this.modalService.show(ModalPostComponent, initialState);
+
+    this.modalService.onHide
+      .pipe(take(1))
+      .subscribe(() => {
+        this.loadPosts();
+      });
+
   }
 
   addComment(index: number, post: IPostResponse) {

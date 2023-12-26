@@ -30,3 +30,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.text-danger{
+  font-size: 0.8rem;
+}

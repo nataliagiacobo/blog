@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal'
@@ -27,6 +27,7 @@ export class ModalAlbumComponent implements OnInit {
   selectedPhotos: File[] = [];
   public albumForm!: FormGroup;
   private album: IAlbumRequest = {};
+  public errorMessage?: string;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -79,19 +80,16 @@ export class ModalAlbumComponent implements OnInit {
 
     this.http.post<IAlbumResponse>(apiUrl, this.album, {
       headers: headers
-    })
-      .pipe(
-        catchError((error) => {
-          return throwError(error);
-        })
-      )
-      .subscribe(
-        (response: IAlbumResponse) => {
-          this.saveImages(response.id!);
-          this.router.navigate(['/album']);
-          this.bsModalRef.hide()
-        }
-      );
+    }).subscribe({
+      next: data => {
+        this.saveImages(data.id!);
+        this.router.navigate(['/album']);
+        this.bsModalRef.hide()
+      },
+      error: error => {
+        this.errorMessage = error.message;
+      }
+    });
   }
 
   saveImages(albumId: number) {

@@ -38,7 +38,7 @@ export class RegisterComponent {
       .subscribe(
         (response: any) => {
           console.log('Login bem-sucedido!', response);
-          this.router.navigate(['']);
+          this.router.navigate(['/login']);
         }
       );
   }

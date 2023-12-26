@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { AuthService } from '../../services/auth.service';
 import { environment } from '../../../environments/environment';
-import { catchError, throwError } from 'rxjs';
+import { catchError, take, throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { ModalAlbumComponent } from '../modal-album/modal-album.component';
@@ -60,6 +60,12 @@ export class AlbumComponent implements OnInit {
     };
 
     this.bsModalRef = this.modalService.show(ModalAlbumComponent, initialState);
+
+    this.modalService.onHide
+      .pipe(take(1))
+      .subscribe(() => {
+        this.loadAlbums();
+      });
   }
 
   isUserAuthorized(albumId: number): boolean {

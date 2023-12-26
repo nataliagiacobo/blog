@@ -1,0 +1,11 @@
+a {
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 0.685);
+    font-weight: 500;
+    cursor: pointer;
+}
